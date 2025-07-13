@@ -1,0 +1,74 @@
+/* General Navbar Styling */
+.navbar {
+    padding: 10px 0; /* Adds vertical spacing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+.navbar-brand {
+    font-weight: bold; /* Emphasize brand */
+    font-size: 20px;
+}
+
+.nav-link {
+    font-size: 16px;
+    font-weight: 500;
+    color: #343a40; /* Dark gray */
+}
+
+.nav-link.active {
+    color: #007bff; /* Blue for the active link */
+}
+
+.nav-link:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+/* Right-side Button */
+.btn-outline-primary {
+    border: 2px solid #007bff; /* Thick border */
+    color: #007bff; /* Button text color */
+    font-weight: 600; /* Bolder text */
+    text-transform: uppercase; /* Uppercase text */
+    transition: background-color 0.2s ease, color 0.2s ease; /* Smooth hover effect */
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff; /* Blue background on hover */
+    color: white; /* White text on hover */
+}
+
+/* Mobile view adjustments */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 5px 0;
+    }
+    
+    .nav-link {
+        font-size: 14px;
+    }
+    
+    .btn-outline-primary {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+

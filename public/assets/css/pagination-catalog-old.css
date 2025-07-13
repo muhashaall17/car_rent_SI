@@ -1,0 +1,105 @@
+body {
+    background-color: #494949;
+}
+
+/* MENGATUR JARAK BORDER DENGAN TULISAN DROPDOWN BUTTON START */
+.container-fluid > .d-flex.justify-content-between > .btn-group > button {
+    padding: 5px 35px;
+}
+/* MENGATUR JARAK BORDER DENGAN TULISAN DROPDOWN BUTTON END */
+
+/* MENGATUR WARNA DROPDOWN BUTTON START */
+.container-fluid>.d-flex>.btn-group button {
+    color: #000000;
+    background-color: #fd9800;
+} 
+/* MENGATUR WARNA DROPDOWN BUTTON END */
+
+/* MENGATUR JARAK ANTAR MOBIL START */
+.container-fluid #carsCatalogue .d-flex { /* Default value carsCatalogue*/
+    justify-content: space-between;
+}
+
+.container-fluid #carsCatalogue .row {
+    width: 500px;
+    margin-bottom: 50px;
+}
+/* MENGATUR JARAK ANTAR MOBIL END */
+
+/* MENGATUR JARAK ANTAR KOLOM START */
+.container-fluid #carsCatalogue .row .col {
+    border-radius: 50px;
+    background-color: #000;
+    color: white;
+}
+
+/* MENGATUR JARAK ANTAR KOLOM END */
+
+/* ------------ PENGATURAN DIV CARSCATALOGUE START ------------ */
+
+/* MENGATUR BUTTON RENT NOW CARD CARS CATALOGUE START */
+.container-fluid #carsCatalogue .d-flex .row .col .d-grid .btn {
+    color: #FFFFFF;
+    background-color: #3B5998;
+    font-size: 1.1em;
+    padding: 5px 10px;
+}
+/* MENGATUR BUTTON RENT NOW CARD CARS CATALOGUE END */
+
+/* MENGATUR FONT-SIZE DARI DETAILS CARS BRAND START */
+.container-fluid #carsCatalogue .d-flex .row .col .d-flex.brand h3 {
+    color: #FFFFFF;
+    font-size: 1.4em;
+}
+/* MENGATUR FONT-SIZE DARI DETAILS CARS BRAND END */
+
+/* MENGATUR FONT-SIZE DARI DETAILS CARS cars START */
+.container-fluid #carsCatalogue .d-flex .row .col .d-flex.cars h3 {
+    color: #FFFFFF;
+    font-size: 0.8em;
+}
+/* MENGATUR FONT-SIZE DARI DETAILS CARS cars END */
+
+/* ------------ PENGATURAN DIV CARSCATALOGUE END ------------ */
+/* MENGATUR PAGINATION START */
+.container-fluid>div#nav>nav {
+    width: 100%;
+}
+
+.container-fluid>div#nav>nav>ul.pagination>li.page-item {
+    margin: 0 25px;
+}
+
+.container-fluid>div#nav>nav>ul.pagination>li.page-item>a.page-link {
+    border-radius: 50%;
+    background-color: rgb(214, 167, 38);
+    color: black;
+}
+/* MENGATUR PAGINATION END */
+
+/* MEDIA QUERY DROPDOWN START */
+@media (max-width: 1122px) {
+    .container-fluid .d-flex{
+        width: 100% !important;
+        flex-wrap: wrap !important;
+    }
+}
+
+@media (max-width: 1056px) {
+    .container-fluid .d-flex {
+        row-gap: 30px;
+    }
+}
+/* MEDIA QUERY DROPDOWN END */
+
+/* MEDIA QUERY CARSCATALOGUE START */
+@media (max-width: 1199px) {
+    .container-fluid #carsCatalogue .d-flex {
+        justify-content: center !important;
+    }
+
+    .container-fluid #carsCatalogue .d-flex .row .col .d-grid .btn {
+        width: 100%;
+    }
+}
+/* MEDIA QUERY CARSCATALOGUE END */

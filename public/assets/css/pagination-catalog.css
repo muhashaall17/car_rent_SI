@@ -1,0 +1,8 @@
+.nav-link {
+    font-weight: 500;
+    margin-right: 15px;
+}
+
+.nav-link:hover {
+    color: #6c63ff;
+}
