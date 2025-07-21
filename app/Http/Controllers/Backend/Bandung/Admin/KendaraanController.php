@@ -78,7 +78,7 @@ class KendaraanController extends Controller
     public function store(Request $request)
     {
         try {
-            $this->validate($request, [
+           $this->validate($request, [
                 'cabang_id',
                 'jenis_kendaraan',
                 'plat_nomor',
@@ -87,10 +87,9 @@ class KendaraanController extends Controller
                 'tahun_pembuatan',
                 'warna',
                 'harga_sewa',
-                'gambar',
                 'status',
             ]);
-    
+            
             $image = $request->file('gambar');
             $image->storeAs('public/mobil', $image->hashName());
     

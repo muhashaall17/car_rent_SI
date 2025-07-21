@@ -101,7 +101,7 @@ class DriverController extends Controller
 
             return response()->json([
                 'success' => true,
-                'msg' => 'Berhasil Menghapus Cabang',
+                'msg' => 'Berhasil Menghapus Driver',
             ]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'msg' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);

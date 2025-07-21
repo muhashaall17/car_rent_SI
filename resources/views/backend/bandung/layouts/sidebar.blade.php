@@ -123,7 +123,7 @@
         <div class="sidebar-header">
             <i class="fas fa-car"></i> Jocar Trans
         </div>
-        <div class="section-title">Admin Jocar</div>
+        <div class="section-title">Master Data</div>
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ url('/dashboard') }}">
@@ -158,7 +158,7 @@
                     <span class="sidebar-icon"><i class="fa-solid fa-handshake"></i></span> Rental
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link {{ request()->is('CashIn') ? 'active' : '' }}" href="{{ route('CashIn.index') }}">
                     <span class="sidebar-icon"><i class="fa-solid fa-cash-register"></i></span> Cash In
                 </a>
@@ -167,7 +167,7 @@
                 <a class="nav-link {{ request()->is('CashOut') ? 'active' : '' }}" href="{{ route('CashOut.index') }}">
                     <span class="sidebar-icon"><i class="   fa-solid fa-money-bills"></i></span> Cash Out
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('actionlogout') }}" onclick="event.preventDefault();
                  document.getElementById('logout-form').submit();">

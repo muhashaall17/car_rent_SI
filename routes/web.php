@@ -97,7 +97,6 @@ Route::group(['middleware' => ['auth', 'role:super_admin,admin']], function () {
     // ROUTE UNTUK DRIVER CONTROLLER END
 
     Route::get('/api/get-kendaraan', [KendaraanController::class, 'getKendaraan'])->name('getKendaraan');
-    Route::get('/api/tambah-kendaraan', [KendaraanController::class, 'store'])->name('kendaraan.store');
     Route::post('/api/delete-kendaraan', [KendaraanController::class, 'deleteKendaraan'])->name('deleteKendaraan');
     Route::get('/api/form-tambah-kendaraan', [KendaraanController::class, 'createPage'])->name('kendaraan.create');
     Route::get('/api/form-edit-kendaraan', [KendaraanController::class, 'editPage'])->name('kendaraan.edit');

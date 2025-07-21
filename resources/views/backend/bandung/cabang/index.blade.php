@@ -12,7 +12,7 @@
 
     @include('backend.bandung.layouts.sidebar')
     <div class="content-wrapper">
-        <div class="row mt-4">
+        <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header mb-2">
@@ -31,9 +31,9 @@
                         </button> -->
 
                         <!-- href="{{ route('cabang.create')}}" -->
-                        <a class="btn btn-info mr-2 add-cabang"><i class="fas fa-plus mr-2"></i>Tambah Cabang</a>
+                        <a class="btn btn-primary m-2 add-cabang"><i class="fas fa-plus me-2"></i>Tambah Cabang</a>
 
-                        <a class="btn btn-success" href="#"><i class="fas fa-file-excel mr-2"></i> Export Excel</a>
+                        <!-- <a class="btn btn-success" href="#"><i class="fas fa-file-excel mr-2"></i> Export Excel</a> -->
                     </form>
 
                     @if(session()->has('message'))

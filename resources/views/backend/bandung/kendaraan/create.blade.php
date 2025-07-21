@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Mobil</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    @include('backend.bandung.layouts.loadLibGlobal')
 </head>
 
 <body>
@@ -17,9 +15,9 @@
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
                         @if(session()->has('message'))
-                            <div class="alert alert-success">
-                                {{ session()->get('message') }}
-                            </div>
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
                         @endif
                         <form id="addKendaraanForm" enctype="multipart/form-data" autocomplete="off" method="POST">
                             @csrf
@@ -35,7 +33,7 @@
                                 <label for="cabang_id">Cabang</label>
                                 <select name="cabang_id" id="cabang_id" class="form-control">
                                     @foreach ($cabang_id as $cId)
-                                        <option value="{{ $cId->id }}">{{ $cId->nama_cabang }}</option>
+                                    <option value="{{ $cId->id }}">{{ $cId->nama_cabang }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -112,11 +110,60 @@
         </div>
     </div>
 
+    <!-- jQuery (Load pertama kali) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery UI (Versi yang kompatibel dengan jQuery 3.x) -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <!-- Bootstrap CSS (Versi 5.3.3) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome (Versi terbaru 6.7.1) -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- DataTables CSS -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css"> -->
+
+    <!-- Popper.js (Bootstrap dependency) -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS (Versi 5.3.3) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+    <!-- Moment.js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script> -->
+
+    <!-- Dexie.js -->
+    <!-- <script src="https://unpkg.com/dexie/dist/dexie.js"></script> -->
+
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- DataTables JS -->
+    <!-- <script src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script> -->
+
+    <!-- Validasi Form JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+    <!-- Sweet Alert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Money Formatting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <!-- Custom CSS (Load paling terakhir agar menimpa style lain jika perlu) -->
+    <!-- <link rel="stylesheet" href="/assets/css/style.css"> -->
+
     <script>
         // AJAX START
         $(document).ready(() => {
             // AJAX UNTUK TAMBAH DATA KENDARAAN START
-            $('button#add-kendaraan-submit-btn').click(function () {
+            $('button#add-kendaraan-submit-btn').click(function() {
                 $('form#addKendaraanForm').submit();
             });
             // AJAX UNTUK TAMBAH DATA KENDARAAN EBD
@@ -124,57 +171,50 @@
             // AJAX UNTUK FORM TAMBAH KENDARAAN START
             $('form#addKendaraanForm').submit(e => {
                 e.preventDefault();
-                let getCabang = $('select[name="cabang_id"]').val();
-                let getJenisKendaraan = $('select[name="jenis_kendaraan"]').val();
-                let getPlatNomor = $('input[name="plat_nomor"]').val();
-                let getMerk = $('input[name="merk"]').val();
-                let getNamaKendaraan = $('input[name="nama_kendaraan"]').val();
-                let getTahunPembuatan = $('input[name="tahun_pembuatan"]').val();
-                let getWarna = $('input[name="warna"]').val();
-                let getHargaSewa = $('input[name="harga_sewa"]').val();
-                let getGambar = $('input[name="gambar"]').val();
 
-                // console.log(getCabang);
-                // console.log(getJenisKendaraan);
-                // console.log(getPlatNomor);
-                // console.log(getMerk);
-                // console.log(getNamaKendaraan);
-                // console.log(getTahunPembuatan);
-                // console.log(getWarna);
-                // console.log(getHargaSewa);
-                // console.log(getGambar);
+                let formElement = document.querySelector('#addKendaraanForm');
+                let formData = new FormData(formElement);
 
-                let formData = {
-                    _token: $('meta[name="csrf-token"]').attr('content'),
-                    id: $('input[name="id_kendaraan_add"]').val() || null,
-                    cabang_id: getCabang || null,
-                    jenis_kendaraan: getJenisKendaraan || null,
-                    plat_nomor: getPlatNomor || null,
-                    merk: getMerk || null,
-                    nama_kendaraan: getNamaKendaraan || null,
-                    tahun_pembuatan: getTahunPembuatan || null,
-                    warna: getWarna || null,
-                    harga_sewa: getHargaSewa || null,
-                    gambar: getGambar || null,
-                };
+                formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+                formData.append('id', $('input[name="id_kendaraan_add"]').val() || '');
 
                 $.ajax({
                     url: "{{ route('kendaraan.store') }}",
                     type: 'POST',
-                    dataType: 'JSON',
                     data: formData,
+                    processData: false, // penting untuk file
+                    contentType: false, // penting untuk file
+                    dataType: 'JSON',
                     beforeSend: () => {
                         $('form#addKendaraanForm').validate({
                             rules: {
-                                cabang_id: {required: true},
-                                jenis_kendaraan: {required: true},
-                                plat_nomor: {required: true},
-                                merk: {required: true},
-                                nama_kendaraan: {required: true},
-                                tahun_pembuatan: {required: true},
-                                warna: {required: true},
-                                harga_sewa: {required: true},
-                                gambar: {required: true},
+                                cabang_id: {
+                                    required: true
+                                },
+                                jenis_kendaraan: {
+                                    required: true
+                                },
+                                plat_nomor: {
+                                    required: true
+                                },
+                                merk: {
+                                    required: true
+                                },
+                                nama_kendaraan: {
+                                    required: true
+                                },
+                                tahun_pembuatan: {
+                                    required: true
+                                },
+                                warna: {
+                                    required: true
+                                },
+                                harga_sewa: {
+                                    required: true
+                                },
+                                gambar: {
+                                    required: true
+                                },
                             }
                         });
 
@@ -182,30 +222,30 @@
                             required: 'Bagian ini wajib diisi!',
                         });
 
-                        if(!$('form#addKendaraanForm').valid()) {
+                        if (!$('form#addKendaraanForm').valid()) {
                             $('div#alertMessageAddKendaraan').removeClass('d-none');
                             return false;
                         } else {
                             $('div#alertMessageAddKendaraan').addClass('d-none');
                         }
                     },
-                    success: function (response) {
-                        if(response.success) {
+                    success: function(response) {
+                        if (response.success) {
                             Swal.fire({
                                 title: response.msg,
                                 text: 'Kembali ke menu driver...',
                                 icon: 'success',
                                 confirmButtonText: 'Lanjutkan',
                             }).then(result => {
-                                if(result.isConfirmed) {
-                                    alert('Berhasil!');
+                                if (result.isConfirmed) {
+                                    window.location.href = "{{ route('kendaraan.index') }}";
                                 }
                             });
                         } else {
                             console.error(response.msg);
                         }
                     },
-                    error: function (response) {
+                    error: function(response) {
                         console.error(response);
                     }
                 });
