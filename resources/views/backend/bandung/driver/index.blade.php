@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Driver</title>
+    <title>Data Pengemudi</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
@@ -16,7 +16,7 @@
                 <div class="card">
                     <div class="card-header mb-2">
                         <center>
-                            <h5 class="card-title">Data Driver</h5>
+                            <h5 class="card-title">Pengemudi</h5>
                         </center>
                     </div>
                     <form action="#" method='POST' class="d-flex align-items-center">
@@ -30,7 +30,7 @@
                         </button> -->
 
                         <a class="btn btn-primary m-2 add-driver">
-                            <i class="fas fa-plus me-2"></i>Tambah Driver</a>
+                            <i class="fas fa-plus me-2"></i>Tambah Pengemudi</a>
 
 
                     </form>
@@ -45,10 +45,11 @@
                         <table id="driverTable" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Nama Driver</th>
-                                    <th>Cabang</th>
-                                    <th class="text-end">Harga</th>
-                                    <th class="text-center">Action</th>
+                                    <th class="text-start" style="width: 8%;">No</th>
+                                    <th style="width: 40%;">Nama Pengemudi</th>
+                                    <th style="width: 15%;">Cabang</th>
+                                    <th class="text-end" style="width: 22%;">Harga</th>
+                                    <th class="text-center" style="width: 15%;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -121,9 +121,9 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
-            <i class="fas fa-car"></i> Jocar Trans
+            <i class="fas fa-car"></i> AutoRent
         </div>
-        <div class="section-title">Master Data</div>
+        <div class="section-title">Menu Admin</div>
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ url('/dashboard') }}">
@@ -137,7 +137,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->is('driver') ? 'active' : '' }}" href="{{ route('driver.index') }}">
-                    <span class="sidebar-icon"><i class="fa-regular fa-id-card"></i></span> Driver
+                    <span class="sidebar-icon"><i class="fa-regular fa-id-card"></i></span> Pengemudi
                 </a>
             </li>
             <li class="nav-item">
@@ -147,7 +147,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->is('users') ? 'active' : '' }}" href="{{ route('users.index') }}">
-                    <span class="sidebar-icon"><i class="fa-solid fa-user"></i></span> User
+                    <span class="sidebar-icon"><i class="fa-solid fa-user"></i></span> Pengguna
                 </a>
             </li>
         </ul>

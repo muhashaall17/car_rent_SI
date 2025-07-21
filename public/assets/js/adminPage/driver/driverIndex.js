@@ -17,6 +17,15 @@ $(document).ready(() => {
         ajax: getDriver,
         columns: [
             {
+                data: null, // tidak mengambil dari field data
+                class: "text-start",
+                orderable: true,
+                searchable: false,
+                render: (data, type, row, meta) => {
+                    return meta.row + 1;
+                },
+            },
+            {
                 data: "nama_driver",
                 class: "text-start",
                 name: "nama_driver",
@@ -35,6 +44,7 @@ $(document).ready(() => {
             },
             {
                 data: "id",
+                orderable: false,
                 class: "text-center",
                 render: (data, type, row) => {
                     return `<a style="font-size: 16px" href="#" class="btn btn-sm btn-primary edit-driver-btn" data-key="${data}" data-cabang="${row["cabang_id"]}"  data-driver="${row["nama_driver"]}" data-price="${row["harga"]}">

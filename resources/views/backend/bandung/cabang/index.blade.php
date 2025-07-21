@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-header mb-2">
                         <center>
-                            <h5 class="card-title">Data Cabang</h5>
+                            <h5 class="card-title">Cabang</h5>
                         </center>
                     </div>
                     <form action="#" method='POST' class="d-flex align-items-center">
@@ -46,8 +46,9 @@
                         <table id="cabangTable" class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th class="text-start" style="width: 8%;">No</th>
                                     <th class="text-start">Nama Cabang</th>
-                                    <th class="text-center">Action</th>
+                                    <th class="text-center" style="width: 20%;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,10 +64,10 @@
     <!-- START Modal Add Cabang -->
     <div class="modal fade" id="addCabangModal" tabindex="-1" role="dialog" aria-labelledby="addCabangModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5>Menambahkan Cabang</h5>
+                    <h5>Tambah Cabang</h5>
                 </div>
                 <form id="addCabang" autocomplete="off">
                     <div class="modal-body">
@@ -100,7 +101,7 @@
     <!-- START Modal Edit Cabang -->
     <div class="modal fade" id="editCabangModal" tabindex="-1" role="dialog" aria-labelledby="editCabangmodalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5>Edit Cabang</h5>
@@ -123,7 +124,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"
                             id="close-edit-cabang-modal-btn">Close</button>
-                        <button type="button" class="btn btn-success" id="edit-cabang-submit-btn">Edit</button>
+                        <button type="button" class="btn btn-success" id="edit-cabang-submit-btn">Simpan</button>
                     </div>
                 </form>
             </div>

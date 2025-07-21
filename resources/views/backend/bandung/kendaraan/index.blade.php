@@ -45,14 +45,13 @@
                         <table id="kendaraanTable" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th class="text-center">ID</th>
-                                    <th class="text-center">ID Cabang</th>
-                                    <th class="text-center">Jenis Kendaraan</th>
-                                    <th class="text-center">Plat Nomor</th>
-                                    <th class="text-center">Merk</th>
-                                    <th class="text-center">Harga Sewa</th>
-                                    <th class="text-center">Status</th>
-                                    <th class="text-center">Action</th>
+                                    <th class="text-center" style="width: 8%;">No</th>
+                                    <th class="text-start" style="width: 15%;">Plat Nomor</th>
+                                    <th class="text-start" style="width: 8%;">Cabang</th>
+                                    <th class="text-start">Nama</th>
+                                    <th class="text-end" style="width: 15%;">Harga Sewa</th>
+                                    <th class="text-center" style="width: 8%;">Status</th>
+                                    <th class="text-center" style="width: 15%;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -38,15 +38,16 @@ class KendaraanController extends Controller
 
     public function getKendaraan(Request $request) {
         // QUERY UNTUK MENGAMBIL INFORMASI KENDARAAN
-        $getKendaraan = DB::table('kendaraan')
+        $getKendaraan = DB::table('kendaraan as vch')
+            ->leftJoin('cabang as cb', 'cb.id', '=', 'vch.cabang_id')
             ->select(
-                'id',
-                'cabang_id',
-                'jenis_kendaraan',
-                'plat_nomor',
-                'merk',
-                'harga_sewa',
-                'status'
+                'vch.id',
+                'cb.nama_cabang',
+                'vch.jenis_kendaraan',
+                'vch.plat_nomor',
+                DB::raw("CONCAT(vch.merk, ' ', vch.nama_kendaraan) as nama"),
+                'vch.harga_sewa',
+                'vch.status'
             )
             ->get();
 

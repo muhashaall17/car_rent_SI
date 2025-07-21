@@ -17,29 +17,29 @@ $(document).ready(() => {
         ajax: getKendaraan,
         columns: [
             {
-                data: "id",
-                class: "text-center",
-                name: "id",
-            },
-            {
-                data: "cabang_id",
-                class: "text-center",
-            },
-            {
-                data: "jenis_kendaraan",
-                class: "text-center",
+                data: null, // tidak mengambil dari field data
+                class: "text-start",
+                orderable: true,
+                searchable: false,
+                render: (data, type, row, meta) => {
+                    return meta.row + 1;
+                },
             },
             {
                 data: "plat_nomor",
-                class: "text-center",
+                class: "text-start",
             },
             {
-                data: "merk",
-                class: "text-center",
+                data: "nama_cabang",
+                class: "text-start",
+            },
+            {
+                data: "nama",
+                class: "text-start",
             },
             {
                 data: "harga_sewa",
-                class: "text-center",
+                class: "text-end",
             },
             {
                 data: "status",

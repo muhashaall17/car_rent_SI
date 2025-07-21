@@ -23,30 +23,32 @@ $(document).ready(function () {
             {
                 data: "no_invoice",
                 class: "text-start",
-                name: "no_invoice",
-            },
-            {
-                data: "cabang",
-                name: "cabang",
+                render: function (data, type, row) {
+                    return `
+                    <i class="fa fa-plus-square text-primary toggle-child" style="cursor: pointer; margin-right: 6px;"></i>
+                    ${data}
+                `;
+                },
             },
             {
                 data: "tanggal_invoice",
                 class: "text-center",
-                render: function (data, type, row) {
+                render: function (data) {
                     return moment(data).format("DD/MM/YYYY");
                 },
             },
             {
+                data: "cabang",
+            },
+            {
                 data: "nama_pelanggan",
-                name: "nama_pelanggan",
             },
             {
                 data: "status_pembayaran",
                 class: "text-center",
-                render: function (data, type, row) {
+                render: function (data) {
                     let bg = "",
                         text = "";
-
                     if (data == "pending") {
                         text = "Menunggu Pembayaran";
                         bg = "warning";
@@ -60,19 +62,15 @@ $(document).ready(function () {
                         text = "Error";
                         bg = "danger";
                     }
-
-                    return `
-                    <a style="font-size: 16px; width: 100%" href="#" class="btn btn-sm btn-${bg}">${text}</a>
-                    `;
+                    return `<a class="btn btn-sm btn-${bg}" style="font-size: 16px; width: 100%">${text}</a>`;
                 },
             },
             {
                 data: "status_rental",
                 class: "text-center",
-                render: function (data, type, row) {
+                render: function (data) {
                     let bg = "",
                         text = "";
-
                     if (data == "waiting") {
                         text = "Menunggu Diambil";
                         bg = "warning";
@@ -89,29 +87,58 @@ $(document).ready(function () {
                         text = "Error";
                         bg = "danger";
                     }
-
-                    return `
-                    <a style="font-size: 16px; width: 100%" href="#" class="btn btn-sm btn-${bg}">${text}</a>
-                    `;
+                    return `<a class="btn btn-sm btn-${bg}" style="font-size: 16px; width: 100%">${text}</a>`;
                 },
             },
             {
                 data: "id",
-                class: "text-center",
+                visible: false,
                 render: function (data, type, row) {
                     return `
-                    <a style="font-size: 16px" href="#" class="btn btn-sm btn-primary detail-invoice-btn" data-key="${data}">
-                    <i class="fa fa-info"></i>
+                    <a class="btn btn-sm btn-primary detail-invoice-btn" data-key="${data}">
+                        <i class="fa fa-info"></i>
                     </a>
-                    <a style="font-size: 16px" href="#" class="btn btn-sm btn-success list-payment-btn" data-key="${data}" data-invoiceno="${row["no_invoice"]}" data-idcabang="${row["id_cabang"]}">$</a>
-                    <a href="#" class="btn btn-sm btn-danger delete-invoice-btn" data-key="${data}">
-                    <i class="fa fa-trash"></i>
+                    <a class="btn btn-sm btn-success list-payment-btn" data-key="${data}" data-invoiceno="${row["no_invoice"]}" data-idcabang="${row["id_cabang"]}">$</a>
+                    <a class="btn btn-sm btn-danger delete-invoice-btn" data-key="${data}">
+                        <i class="fa fa-trash"></i>
                     </a>
-                    `;
+                `;
                 },
             },
         ],
     });
+
+    $("#rentalTable tbody").on("click", ".toggle-child", function () {
+        let tr = $(this).closest("tr");
+        let row = dtbRental.row(tr);
+        let icon = $(this);
+
+        if (row.child.isShown()) {
+            row.child.hide();
+            icon.removeClass("fa-minus-square text-danger").addClass(
+                "fa-plus-square text-primary"
+            );
+        } else {
+            row.child(formatChildRow(row.data())).show();
+            icon.removeClass("fa-plus-square text-primary").addClass(
+                "fa-minus-square text-danger"
+            );
+        }
+    });
+
+    function formatChildRow(data) {
+        return `
+        <div style="padding: 10px;">
+            <a class="btn btn-sm btn-primary detail-invoice-btn" data-key="${data.id}">
+                <i class="fa fa-info"></i>
+            </a>
+            <a class="btn btn-sm btn-success list-payment-btn" data-key="${data.id}" data-invoiceno="${data.no_invoice}" data-idcabang="${data.id_cabang}">$</a>
+            <a class="btn btn-sm btn-danger delete-invoice-btn" data-key="${data.id}">
+                <i class="fa fa-trash"></i>
+            </a>
+        </div>
+    `;
+    }
 
     // DATATABLE PEMBAYARAN
     let dtbPayment = new DataTable("#paymentTable", {

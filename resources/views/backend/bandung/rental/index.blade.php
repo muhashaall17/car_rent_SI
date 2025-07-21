@@ -49,12 +49,11 @@
                             <thead>
                                 <tr>
                                     <th class="text-start">No Invoice</th>
-                                    <th>Cabang</th>
                                     <th class="text-center">Tanggal</th>
-                                    <th>Nama Pelanggan</th>
+                                    <th class="text-start">Cabang</th>
+                                    <th>Atas Nama</th>
                                     <th class="text-center">Status Pembayaran</th>
                                     <th class="text-center">Status Rental</th>
-                                    <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
