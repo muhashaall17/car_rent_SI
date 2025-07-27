@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jocar Trans Indonesia - Rental Mobil Premium</title>
+  <title>Autorent - Rental Mobil Premium</title>
   <!-- <script src="https://cdn.tailwindcss.com"></script> -->
   @vite('resources/css/app.css')
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,8 +23,8 @@
   <nav class="navbar fixed w-full z-50 top-0 left-0 px-6 py-4">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center">
-        <img src="assets/logo-jocar.png" alt="Jocar Trans Logo" class="h-12 w-auto object-contain  mr-3 my-0" />
-        <span class="text-md font-bold text-gray-800">Jocar Trans Indonesia</span>
+        <!-- <img src="assets/logo-jocar.png" alt="Jocar Trans Logo" class="h-12 w-auto object-contain  mr-3 my-0" /> -->
+        <span class="text-md font-bold text-gray-800">Autorent</span>
       </div>
       <div class="hidden lg:flex items-center space-x-6">
         <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium transition hover-grow">Beranda</a>
@@ -75,7 +75,7 @@
           Solusi Transportasi <span class="text-blue-600">Premium</span> untuk Anda
         </h1>
         <p class="text-base lg:text-lg text-gray-600 mb-6 max-w-lg lg:mx-0 mx-auto">
-          PT Jocar Trans Indonesia, dengan lebih dari 8 tahun pengalaman sejak 2016, kami hadir untuk memberikan solusi transportasi terbaik, mulai dari kendaraan operasional perusahaan, layanan sewa pribadi, hingga trip organizer profesional
+          Autorent, dengan lebih dari 8 tahun pengalaman sejak 2016, kami hadir untuk memberikan solusi transportasi terbaik, mulai dari kendaraan operasional perusahaan, layanan sewa pribadi, hingga trip organizer profesional
         </p>
         <div class="flex flex-col sm:flex-row gap-3 hero-buttons">
           <a href="#contact" class="bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white px-6 py-3 rounded-full font-medium transition flex items-center justify-center shadow-lg hover-grow glow-effect">
@@ -559,7 +559,7 @@
                 </div>
               </div>
               <p class="text-xs text-gray-600 mb-4">
-                "Sangat puas menggunakan layanan wedding car dari Jocar Trans. Mobilnya bersih, sopirnya profesional, dan tepat waktu."
+                "Sangat puas menggunakan layanan wedding car dari Autorent. Mobilnya bersih, sopirnya profesional, dan tepat waktu."
               </p>
               <div class="flex">
                 <i class="ri-star-fill text-yellow-400 text-sm"></i>
@@ -582,7 +582,7 @@
                 </div>
               </div>
               <p class="text-xs text-gray-600 mb-4">
-                "Sudah 2 tahun menggunakan layanan pengadaan kendaraan operasional dari Jocar Trans untuk perusahaan kami."
+                "Sudah 2 tahun menggunakan layanan pengadaan kendaraan operasional dari Autorent untuk perusahaan kami."
               </p>
               <div class="flex">
                 <i class="ri-star-fill text-yellow-400 text-sm"></i>
@@ -605,7 +605,7 @@
                 </div>
               </div>
               <p class="text-xs text-gray-600 mb-4">
-                "Liburan keluarga ke Bandung menggunakan Fortuner dari Jocar Trans sangat menyenangkan. Mobilnya nyaman."
+                "Liburan keluarga ke Bandung menggunakan Fortuner dari Autorent sangat menyenangkan. Mobilnya nyaman."
               </p>
               <div class="flex">
                 <i class="ri-star-fill text-yellow-400 text-sm"></i>
@@ -670,7 +670,7 @@
         <div>
           <div class="flex items-center mb-4">
             <img src="assets/logo light.png" alt="Jocar Trans Logo" class="h-20 w-auto object-contain  mr-3 my-0" />
-            <span class="text-md font-bold text-white-800">Jocar Trans Indonesia</span>
+            <span class="text-md font-bold text-white-800">Autorent</span>
           </div>
           <p class="mb-4 text-sm">
             Solusi transportasi premium untuk semua kebutuhan perjalanan Anda.
@@ -723,7 +723,7 @@
             </li>
             <li class="flex items-start">
               <i class="ri-mail-line mt-0.5 mr-2 text-sm"></i>
-              <span class="text-sm">jocartransindonesia@gmail.com</span>
+              <span class="text-sm">autorentindonesia@gmail.com</span>
             </li>
             <li class="flex items-start">
               <i class="ri-time-line mt-0.5 mr-2 text-sm"></i>
@@ -734,7 +734,7 @@
       </div>
 
       <div class="pt-6 border-t border-gray-800 text-center text-xs">
-        <p>&copy; 2023 Jocar Trans Indonesia. All rights reserved.</p>
+        <p>&copy; 2023 Autorent. All rights reserved.</p>
       </div>
     </div>
   </footer>
