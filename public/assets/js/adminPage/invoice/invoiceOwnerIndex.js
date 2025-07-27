@@ -68,31 +68,26 @@ $(document).ready(function () {
             {
                 data: "status_rental",
                 class: "text-center",
-                render: function (data, type, row) {
-                    const statusOptions = {
-                        waiting: { text: "Menunggu Diambil", bg: "warning" },
-                        ongoing: { text: "Sedang Digunakan", bg: "info" },
-                        done: { text: "Selesai", bg: "success" },
-                        due: { text: "Telat Dikembalikan", bg: "danger" },
-                    };
-
-                    let optionsHtml = "";
-
-                    for (const [value, info] of Object.entries(statusOptions)) {
-                        const selected = data === value ? "selected" : "";
-                        optionsHtml += `<option value="${value}" data-bg="${info.bg}" ${selected}>${info.text}</option>`;
+                render: function (data) {
+                    let bg = "",
+                        text = "";
+                    if (data == "waiting") {
+                        text = "Menunggu Diambil";
+                        bg = "warning";
+                    } else if (data == "ongoing") {
+                        text = "Sedang Digunakan";
+                        bg = "info";
+                    } else if (data == "done") {
+                        text = "Selesai";
+                        bg = "success";
+                    } else if (data == "due") {
+                        text = "Telat Dikembalikan";
+                        bg = "danger";
+                    } else {
+                        text = "Error";
+                        bg = "danger";
                     }
-
-                    // optional: set dynamic class on change with JS (requires handler)
-                    return `
-                    <select class="form-select form-select-sm status-rental-select bg-${
-                        statusOptions[data]?.bg || "secondary"
-                    }" 
-                            data-id="${row.id}" 
-                            style="width: 100%; font-size: 14px;">
-                        ${optionsHtml}
-                    </select>
-                    `;
+                    return `<a class="btn btn-sm btn-${bg}" style="font-size: 16px; width: 100%">${text}</a>`;
                 },
             },
             {
@@ -104,9 +99,6 @@ $(document).ready(function () {
                         <i class="fa fa-info"></i>
                     </a>
                     <a class="btn btn-sm btn-success list-payment-btn" data-key="${data}" data-invoiceno="${row["no_invoice"]}" data-idcabang="${row["id_cabang"]}">$</a>
-                    <a class="btn btn-sm btn-danger delete-invoice-btn" data-key="${data}">
-                        <i class="fa fa-trash"></i>
-                    </a>
                 `;
                 },
             },
@@ -131,39 +123,6 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on("change", ".status-rental-select", function () {
-        const select = $(this);
-        const selectedOption = select.find("option:selected");
-        const newStatus = selectedOption.val();
-        const newBg = selectedOption.data("bg");
-        const rentalId = select.data("id");
-
-        // Update background color
-        select.removeClass(function (index, className) {
-            return (className.match(/(^|\s)bg-\S+/g) || []).join(" ");
-        });
-        select.addClass(`bg-${newBg}`);
-
-        // Kirim AJAX ke server
-        $.ajax({
-            url: updateStatusRental, // buat route ini di backend
-            type: "POST",
-            data: {
-                id: rentalId,
-                status_rental: newStatus,
-                _token: $('meta[name="csrf-token"]').attr("content"),
-            },
-            success: function (response) {
-                console.log("Status updated successfully.");
-                // Optional: tampilkan toast atau notifikasi
-            },
-            error: function (xhr) {
-                console.error("Update failed:", xhr);
-                alert("Gagal mengubah status.");
-            },
-        });
-    });
-
     function formatChildRow(data) {
         return `
         <div style="padding: 10px;">
@@ -171,9 +130,6 @@ $(document).ready(function () {
                 <i class="fa fa-info"></i>
             </a>
             <a class="btn btn-sm btn-success list-payment-btn" data-key="${data.id}" data-invoiceno="${data.no_invoice}" data-idcabang="${data.id_cabang}">$</a>
-            <a class="btn btn-sm btn-danger delete-invoice-btn" data-key="${data.id}">
-                <i class="fa fa-trash"></i>
-            </a>
         </div>
     `;
     }

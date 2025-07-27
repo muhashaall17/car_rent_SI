@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend\Bandung\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Session;
 use App\Providers\RouteServiceProvider;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +14,7 @@ class LoginController extends Controller
     {
         // Jika user sudah login, redirect ke halaman home atau dashboard
         if (Auth::check()) {
-            return redirect('/dashboard');
+            return redirect(route('dashboard.index'));
         } else {
             return view('backend.bandung.auth.login');
         }
@@ -29,11 +28,17 @@ class LoginController extends Controller
             'username' => $request->input('username'),
             'password' => $request->input('password')
         ];
-        if (Auth::Attempt($data)){
-            return redirect('/dashboard');
-        }else{
-            Session::flash('error', 'salah');
-            return redirect('/');     
+        if (Auth::Attempt($data)) {
+            $user = Auth::user();
+            if ($user->role == 'super_admin') {
+                return redirect()->route('dashboard.index');
+            } elseif ($user->role == 'admin') {
+                return redirect()->route('dashboard.index'); // bisa arahkan ke route lain jika perlu
+            } else {
+                return redirect('/'); // fallback untuk role lain
+            }
+        } else {
+            return redirect('/login/admin')->with('error', 'Username atau Password Salah');
         }
     }
 
@@ -41,6 +46,6 @@ class LoginController extends Controller
     public function actionlogout()
     {
         Auth::logout(); // Logout user
-        return redirect('/'); // Redirect ke halaman utama
+        return redirect('/login/admin'); // Redirect ke halaman login
     }
 }

@@ -22,7 +22,9 @@ class CabangController extends Controller
     public function index()
     {
         $cabang = Cabang::all();
-        return view('backend.bandung.cabang.index', compact('cabang'));
+        $user = Auth::user();
+        $role = $user->role;
+        return view('backend.bandung.cabang.index', compact('cabang','role'));
     }
 
     public function getCabang(Request $request) {

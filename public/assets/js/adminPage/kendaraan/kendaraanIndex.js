@@ -10,6 +10,17 @@ $(document).ready(() => {
                 => STATUS
                 => ACTION
             */
+
+    function Rupiah(angka) {
+        var rupiah = "";
+        var angkarev = angka.toString().split("").reverse().join("");
+        for (var i = 0; i < angkarev.length; i++)
+            if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + ".";
+        return rupiah
+            .split("", rupiah.length - 1)
+            .reverse()
+            .join("");
+    }
     // DATATABLE KENDARAAN START
     let dtbKendaraan = new DataTable("#kendaraanTable", {
         processing: true,
@@ -40,6 +51,9 @@ $(document).ready(() => {
             {
                 data: "harga_sewa",
                 class: "text-end",
+                render: function (data, type, row) {
+                    return Rupiah(data);
+                },
             },
             {
                 data: "status",

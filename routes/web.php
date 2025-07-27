@@ -55,6 +55,7 @@ Route::resource('register', RegisterController::class);
 Route::get('sewa/{id}', [SewaController::class, 'create'])->name('Rental.create');
 Route::post('sewa/{id}', [SewaController::class, 'store'])->name('sewa.store');
 Route::resource('riwayat', RiwayatController::class);
+
 Route::post('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout');
 
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
@@ -64,20 +65,38 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index
 
 // <-- Backend --> \\
 Route::get('/login/admin', [LoginController::class, 'index'])->name('admin.login');
+
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
+
 Route::get('/login/admin', function () {
     return view('backend.bandung.auth.login');
 });
 
 Route::group(['middleware' => ['auth', 'role:super_admin,admin']], function () {
+    Route::get('/rental', [RentalController::class, 'index'])->name('rental.index');
     Route::resource('home', HomeController::class);
-    Route::resource('Dashboard', DashboardController::class);
+    Route::resource('pembayaran', PembayaranController::class);
+    Route::resource('dashboard', DashboardController::class);
+
+    // ...API routes for rental
+    Route::get('/api/get-vehicle', [RentalController::class, 'getVehicles'])->name('getVehicles');
+    Route::get('/api/get-drivers', [RentalController::class, 'getDrivers'])->name('getDrivers');
+    Route::post('/api/check-vehicles-and-drivers-availability', [RentalController::class, 'checkDriverAndVehicleAvailability'])->name('checkDriverAndVehicleAvailability');
+    Route::post('/api/get-invoice-number', [RentalController::class, 'generateInvoiceNumber'])->name('generateInvoiceNumber');
+    Route::get('/api/get-datatable-rental', [RentalController::class, 'getDataTableRental'])->name('getDataTableRental');
+    Route::get('api/get-datatable-payment', [RentalController::class, 'getDataTablePayment'])->name('getDataTablePayment');
+    Route::get('/api/get-detail-rental', [RentalController::class, 'getDetailRental'])->name('getDetailRental');
+    Route::post('/api/delete-data-rental', [RentalController::class, 'deleteDataRental'])->name('deleteDataRental');
+    Route::get('/api/get-data-payment', [RentalController::class, 'getDataPayment'])->name('getDataPayment');
+    Route::post('/api/update-status-rental', [RentalController::class, 'updateStatusRental'])->name('updateStatusRental');
+});
+
+Route::group(['middleware' => ['auth', 'role:super_admin']], function () {
+    Route::resource('home', HomeController::class);
     Route::resource('cabang', CabangController::class);
     Route::resource('driver', DriverController::class);
     Route::resource('kendaraan', KendaraanController::class);
-    Route::resource('rental', RentalController::class);
     Route::resource('rental_item', RentalItemController::class);
-    Route::resource('pembayaran', PembayaranController::class);
     Route::resource('CashIn', CashInController::class);
     Route::resource('CashOut', CashOutController::class);
     Route::resource('users', UserController::class);
@@ -96,45 +115,25 @@ Route::group(['middleware' => ['auth', 'role:super_admin,admin']], function () {
     Route::post('/api/delete-driver', [DriverController::class, 'deleteDriver'])->name('deleteDriver');
     // ROUTE UNTUK DRIVER CONTROLLER END
 
+    // ROUTE UNTUK KENDARAAN CONTROLLER START
     Route::get('/api/get-kendaraan', [KendaraanController::class, 'getKendaraan'])->name('getKendaraan');
     Route::post('/api/delete-kendaraan', [KendaraanController::class, 'deleteKendaraan'])->name('deleteKendaraan');
     Route::get('/api/form-tambah-kendaraan', [KendaraanController::class, 'createPage'])->name('kendaraan.create');
     Route::get('/api/form-edit-kendaraan', [KendaraanController::class, 'editPage'])->name('kendaraan.edit');
-    // ROUTE UNTUK RENTAL CONTROLLER START
+    // ROUTE UNTUK KENDARAAN CONTROLLER END
 
-    Route::get('/api/get-vehicle', [RentalController::class, 'getVehicles'])->name('getVehicles');
-    Route::get('/api/get-drivers', [RentalController::class, 'getDrivers'])->name('getDrivers');
-    Route::post('/api/check-vehicles-and-drivers-availability', [RentalController::class, 'checkDriverAndVehicleAvailability'])->name('checkDriverAndVehicleAvailability');
-    Route::post('/api/get-invoice-number', [RentalController::class, 'generateInvoiceNumber'])->name('generateInvoiceNumber');
-    Route::get('/api/get-datatable-rental', [RentalController::class, 'getDataTableRental'])->name('getDataTableRental');
-    Route::get('api/get-datatable-payment', [RentalController::class, 'getDataTablePayment'])->name('getDataTablePayment');
-    Route::get('/api/get-detail-rental', [RentalController::class, 'getDetailRental'])->name('getDetailRental');
-    Route::post('/api/delete-data-rental', [RentalController::class, 'deleteDataRental'])->name('deleteDataRental');
-    Route::get('/api/get-data-payment', [RentalController::class, 'getDataPayment'])->name('getDataPayment');
-    // ROUTE UNTUK RENTAL CONTROLLER END
-
-    // ROUTE UNTUK PEMBAYARAN CONTROLLER START
-    Route::post('/api/update-data-payment', [PembayaranController::class, 'updateDataPayment'])->name('updateDataPayment');
-    Route::post('/api/delete-data-payment', [PembayaranController::class, 'deleteDataPayment'])->name('deleteDataPayment');
-    // ROUTE UNTUK PEMBAYARAN CONTROLLER END
-    
-    
-    // ROUTE UNTUK CASHIN CONTROLLER START
-    Route::get('/api/get-datatable-cash-in', [CashInController::class, 'getDataTableCashIn'])->name('getDataTableCashIn');
-    Route::post('/api/delete-data-cash-in', [CashInController::class, 'deleteDataCashIn'])->name('deleteDataCashIn');
-    Route::get('/api/get-data-cash-in', [CashInController::class, 'getDataCashIn'])->name('getDataCashIn');
-    Route::post('/api/update-data-cash-in', [CashInController::class, 'updateDataCashIn'])->name('updateDataCashIn');
-    Route::get('/api/get-datatable-cash-out', [CashOutController::class, 'getDataTableCashOut'])->name('getDataTableCashOut');
-    Route::get('/api/get-data-cash-out', [CashOutController::class, 'getDataCashOut'])->name('getDataCashOut');
-    Route::post('/api/update-data-cash-out', [CashOutController::class, 'updateDataCashOut'])->name('updateDataCashOut');
-    Route::post('/api/delete-data-cash-out', [CashOutController::class, 'deleteDataCashOut'])->name('deleteDataCashOut');
-    // ROUTE UNTUK CASHOUT CONTROLLER END
-
-    Route::get('/dashboard', function () {
-        return view('backend.bandung.dashboard.index');
-    });
+    // ROUTE UNTUK USER CONTROLLER START
+    Route::get('/api/get-user', [UserController::class, 'getUser'])->name('getUser');
+    // ROUTE UNTUK USER CONTROLLER END
 });
 
 
 
-Route::group(['middleware' => ['auth', 'role:user']], function () {});
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/rental/create', [RentalController::class, 'create'])->name('rental.create');
+    Route::post('/rental', [RentalController::class, 'store'])->name('rental.store');
+
+    // payment update & delete
+    Route::post('/api/update-data-payment', [PembayaranController::class, 'updateDataPayment'])->name('updateDataPayment');
+    Route::post('/api/delete-data-payment', [PembayaranController::class, 'deleteDataPayment'])->name('deleteDataPayment');
+});

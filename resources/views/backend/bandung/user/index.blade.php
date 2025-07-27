@@ -28,45 +28,22 @@
                             Hapus Semua Data
                         </button> -->
 
-                        <a class="btn btn-info mr-2" href="#"><i class="fas fa-plus mr-2"></i>Tambah User (belum)</a>
-
-                        <a class="btn btn-success" href="#"><i class="fas fa-file-excel mr-2"></i> Export Excel</a>
+                        <a class="btn btn-primary m-2" href="#"><i class="fas fa-plus me-2"></i>Tambah Pengguna</a>
                     </form>
 
                     <div class="card-body">
                         <table id="User" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID Cabang</th>
+                                    <th class="text-center">No</th>
                                     <th>Nama</th>
                                     <th>Username</th>
+                                    <th>Role</th>
                                     <th>Email</th>
-                                    <th>Action</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $p)
-                                <tr>
-                                    <td>{{ $p->cabang_id }}</td>
-                                    <td>{{ $p->name }}</td>
-                                    <td>{{ $p->username }}</td>
-                                    <td>{{ $p->email }}</td>
-                                    <td>
-                                        <!-- <form action="#" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <a style="font-size: 14.5px" href="#"
-                                                    class="btn btn-sm btn-primary">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>
-                                                <button style="font-size: 12px" type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Yakin ingin menghapus data?')">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form> -->
-                                    </td>
-                                </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -74,6 +51,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+        let getUser = "{{ route('getUser') }}";
+            // getDriverInformation = "{{ route('getDriverInformation') }}",
+            // deleteDriver = "{{ route('deleteDriver') }}",
+            // driver_store = "{{ route('driver.store') }}",
+            // updateDriver = "{{ route('updateDriver') }}";
+    </script>
 
     <!-- jQuery (Load pertama kali) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

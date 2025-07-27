@@ -23,24 +23,20 @@ class RentalController extends Controller
     {
         // Ambil user yang sedang login
         $user = Auth::user();
+        $role = $user->role;
 
         // Filter cabang berdasarkan role
-        if ($user->role === 'super_admin') {
-            // Super admin dapat mengakses semua cabang
-            $cabangs = Cabang::all();
-        } elseif ($user->role === 'admin') {
-            // Admin hanya dapat mengakses cabang_id miliknya
-            $cabangs = Cabang::where('id', $user->cabang_id)->get();
+        if ($role === 'super_admin') {
+            // Kirim data ke view
+            return view('backend.bandung.rental.indexOwner', compact('role'));
+        } elseif ($role === 'admin') {
+            // Kirim data ke view
+            return view('backend.bandung.rental.index', compact('role'));
         } else {
             // Jika role tidak dikenali, kosongkan cabangs
-            $cabangs = [];
+            // Kirim data ke view
+            return view('/', compact('role'));
         }
-
-        // Ambil daftar ID cabang
-        $cabangIds = $cabangs->pluck('id')->toArray(); // Ambil array id dari hasil query cabang
-
-        // Kirim data ke view
-        return view('backend.bandung.rental.index', compact('cabangs'));
     }
 
     public function getDataTableRental()
@@ -320,6 +316,21 @@ class RentalController extends Controller
             'no_invoice' => $newInvoiceNumber
         ]);
     }
+
+    public function updateStatusRental(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer|exists:rental,id',
+            'status_rental' => 'required|string|in:waiting,ongoing,done,due',
+        ]);
+
+        $rental = Rental::findOrFail($request->id);
+        $rental->status_rental = $request->status_rental;
+        $rental->save();
+
+        return response()->json(['success' => true, 'message' => 'Status Berhasil Diperbarui']);
+    }
+
 
     public function create()
     {

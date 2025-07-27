@@ -16,7 +16,7 @@
                 <div class="card">
                     <div class="card-header mb-2">
                         <center>
-                            <h5 class="card-title">Data Rental Mobil</h5>
+                            <h5 class="card-title">Data Rental</h5>
                         </center>
                     </div>
 
@@ -30,10 +30,6 @@
                                 <i class="fas fa-trash m-2"></i>
                                 Hapus Semua Data
                             </button> -->
-
-                            <a class="btn btn-primary m-1" href="{{ route('rental.create')}}">
-                                <i class="fas fa-plus m-2"></i>Tambah Rental Mobil
-                            </a>
 
                             <!-- <a class="btn btn-success m-2" href="#"><i class="fas fa-file-excel m-2"></i> Export Excel</a> -->
                         </form>
@@ -73,7 +69,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <button type="button" class="btn btn-primary add-payment-btn"><i class="fa-solid fa-plus"></i> Tambah Pembayaran</button>
                     <input type="hidden" name="invId_payment" autocomplete="off">
                     <input type="hidden" name="id_cabang" autocomplete="off">
                     <table id="paymentTable" class="table table-bordered">
@@ -211,12 +206,12 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12 my-2">
                                 <div class="card bg-light">
                                     <div class="card-header"><b>Invoice</b></div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-2">
                                                 <p>No Invoice</p>
                                                 <p>Tanggal</p>
                                                 <p>Cabang</p>
@@ -226,7 +221,7 @@
                                                 <p>:</p>
                                                 <p>:</p>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-9">
                                                 <p><span id="detailInvoiceNo"></span></p>
                                                 <p><span id="detailInvoiceDate"></span></p>
                                                 <p><span id="detailInvoiceBranch"></span></p>
@@ -235,12 +230,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-12 my-2">
                                 <div class="card bg-light">
                                     <div class="card-header"><b>Pelanggan</b></div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-3">
+                                            <div class="col-2">
                                                 <p>Nama</p>
                                                 <p>No Telp</p>
                                                 <p>Email</p>
@@ -252,7 +247,7 @@
                                                 <p>:</p>
                                                 <p>:</p>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-9">
                                                 <p><span id="detailCustomerName"></span></p>
                                                 <p><span id="detailCustomerPhone"></span></p>
                                                 <p><span id="detailCustomerEmail"></span></p>
@@ -293,17 +288,6 @@
         .error {
             color: red;
         }
-
-        .status-rental-select {
-            transition: background-color 0.3s ease;
-        }
-
-        .status-rental-select.bg-success,
-        .status-rental-select.bg-danger,
-        .status-rental-select.bg-info,
-        .status-rental-select.bg-warning {
-            color: white;
-        }
     </style>
 
     <script>
@@ -314,7 +298,6 @@
             getDetailRental = "{{ route('getDetailRental') }}",
             deleteDataRental = "{{ route('deleteDataRental') }}",
             pembayaran_store = "{{ route('pembayaran.store') }}",
-            updateStatusRental = "{{ route('updateStatusRental') }}",
             updateDataPayment = "{{ route('updateDataPayment') }}";
     </script>
 
@@ -367,7 +350,7 @@
     <!-- Custom CSS (Load paling terakhir agar menimpa style lain jika perlu) -->
     <!-- <link rel="stylesheet" href="/assets/css/style.css"> -->
 
-    <script src="./assets/js/adminPage/invoice/invoiceIndex.js"></script>
+    <script src="./assets/js/adminPage/invoice/invoiceOwnerIndex.js"></script>
 </body>
 
 </html>

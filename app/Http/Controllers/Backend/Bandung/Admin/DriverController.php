@@ -23,7 +23,10 @@ class DriverController extends Controller
     {
         $driver = Driver::all();
         $cabang = Cabang::all();
-        return view('backend.bandung.driver.index', compact('driver', 'cabang'));
+        $user = Auth::user();
+        $role = $user->role;
+
+        return view('backend.bandung.driver.index', compact('driver', 'cabang','role'));
     }
 
     public function getDriver(Request $request)

@@ -21,8 +21,11 @@ class KendaraanController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
+        $role = $user->role;
+
         $kendaraan = Kendaraan::all();
-        return view('backend.bandung.kendaraan.index', compact('kendaraan'));
+        return view('backend.bandung.kendaraan.index', compact('kendaraan','role'));
     }
 
     public function createPage()

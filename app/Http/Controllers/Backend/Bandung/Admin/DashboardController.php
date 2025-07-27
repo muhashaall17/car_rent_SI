@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Bandung\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -12,7 +13,20 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view ('backend/bandung/dashboard/index');
+        $user = Auth::user();
+        $role = $user->role;
+
+        if ($role === 'super_admin') {
+            // Kirim data ke view
+            return view ('backend.bandung.dashboard.indexOwner', compact('role'));
+        } elseif ($role === 'admin') {
+            // Kirim data ke view
+            return view ('backend.bandung.dashboard.index', compact('role'));
+        } else {
+            // Jika role tidak dikenali, kosongkan cabangs
+            // Kirim data ke view
+            return view('/', compact('role'));
+        }
     }
 
     /**

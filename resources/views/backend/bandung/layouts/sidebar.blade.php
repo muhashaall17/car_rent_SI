@@ -126,30 +126,32 @@
         <div class="section-title">Menu Admin</div>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ url('/dashboard') }}">
+                <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard.index') }}">
                     <span class="sidebar-icon"><i class="fas fa-tachometer-alt"></i></span> Dashboard
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->is('cabang') ? 'active' : '' }}" href="{{ route('cabang.index') }}">
-                    <span class="sidebar-icon"><i class="fa-solid fa-code-branch"></i></span> Cabang
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->is('driver') ? 'active' : '' }}" href="{{ route('driver.index') }}">
-                    <span class="sidebar-icon"><i class="fa-regular fa-id-card"></i></span> Pengemudi
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->is('kendaraan') ? 'active' : '' }}" href="{{ route('kendaraan.index') }}">
-                    <span class="sidebar-icon"><i class="fa-solid fa-car"></i></span> Kendaraan
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->is('users') ? 'active' : '' }}" href="{{ route('users.index') }}">
-                    <span class="sidebar-icon"><i class="fa-solid fa-user"></i></span> Pengguna
-                </a>
-            </li>
+            <div @class(['d-none' => $role != 'super_admin'])>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('cabang') ? 'active' : '' }}" href="{{ route('cabang.index') }}">
+                        <span class="sidebar-icon"><i class="fa-solid fa-code-branch"></i></span> Cabang
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('driver') ? 'active' : '' }}" href="{{ route('driver.index') }}">
+                        <span class="sidebar-icon"><i class="fa-regular fa-id-card"></i></span> Pengemudi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('kendaraan') ? 'active' : '' }}" href="{{ route('kendaraan.index') }}">
+                        <span class="sidebar-icon"><i class="fa-solid fa-car"></i></span> Kendaraan
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('users') ? 'active' : '' }}" href="{{ route('users.index') }}">
+                        <span class="sidebar-icon"><i class="fa-solid fa-user"></i></span> Pengguna
+                    </a>
+                </li>
+            </div>
         </ul>
         <div class="section-title">Transaksi</div>
         <ul class="nav flex-column">

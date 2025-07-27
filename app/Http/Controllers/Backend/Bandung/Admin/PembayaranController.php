@@ -47,15 +47,6 @@ class PembayaranController extends Controller
                 'bukti_pembayaran' => $request->proof,
             ]);
 
-            $desc = "Pembayaran Invoice";
-            CashIn::create([
-                'tgl_cin' => $request->date,
-                'nominal' => $request->nominal,
-                'deskripsi' => $desc,
-                'payment_id' => $payment->id,
-                'cabang_id' => $request->cabang_id,
-            ]);
-
             return response()->json([
                 'success' => true,
                 'msg' => 'Berhasil Menyimpan Pembayaran',
@@ -87,13 +78,6 @@ class PembayaranController extends Controller
                 'bukti_pembayaran' => $request->proof
             ]);
 
-            $cashIn = CashIn::where('payment_id', $request->payment_id)->first();
-
-            $cashIn->update([
-                'tgl_cin' => $request->date,
-                'nominal' => $request->nominal
-            ]);
-
             return response()->json([
                 'success' => true,
                 'msg' => 'Berhasil Mengubah Pembayaran',
@@ -112,10 +96,6 @@ class PembayaranController extends Controller
             $this->validate($request, [
                 'id' => 'required'
             ]);
-
-            $cashIn = CashIn::where('payment_id', $request->id)->first();
-
-            $cashIn->delete();
 
             $payment = Pembayaran::findOrFail($request->id);
 
