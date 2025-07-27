@@ -130,7 +130,7 @@
                     <span class="sidebar-icon"><i class="fas fa-tachometer-alt"></i></span> Dashboard
                 </a>
             </li>
-            <div @class(['d-none' => $role != 'super_admin'])>
+            <div @class(['d-none'=> $role != 'super_admin'])>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('cabang') ? 'active' : '' }}" href="{{ route('cabang.index') }}">
                         <span class="sidebar-icon"><i class="fa-solid fa-code-branch"></i></span> Cabang
@@ -171,10 +171,10 @@
                 </a>
             </li> -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('actionlogout') }}" onclick="event.preventDefault();
-                 document.getElementById('logout-form').submit();">
+                <a class="nav-link" href="#" id="btn-logout">
                     <span class="sidebar-icon"><i class="fas fa-sign-out"></i></span> Sign Out
                 </a>
+
 
                 <form id="logout-form" action="{{ route('actionlogout') }}" method="POST" style="display: none;">
                     @csrf
@@ -190,6 +190,25 @@
     <div class="content-wrapper">
         @yield('content')
     </div>
+
+    <!-- jQuery (Load pertama kali) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery UI (Versi yang kompatibel dengan jQuery 3.x) -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <!-- Bootstrap CSS (Versi 5.3.3) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome (Versi terbaru 6.7.1) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Bootstrap JS (Versi 5.3.3) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+    <!-- Sweet Alert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -231,16 +250,24 @@
                 }
             });
         });
+
+        $(document).on("click", "#btn-logout", function(e) {
+            e.preventDefault(); // Hindari aksi default <a>
+
+            Swal.fire({
+                title: "Konfirmasi Logout",
+                text: "Apakah Anda yakin ingin keluar?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Ya, logout",
+                cancelButtonText: "Batal",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $("#logout-form").submit(); // Submit form jika user konfirmasi
+                }
+            });
+        });
     </script>
-
-    <!-- Bootstrap CSS (Versi 5.3.3) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
-    <!-- Font Awesome (Versi terbaru 6.7.1) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Bootstrap JS (Versi 5.3.3) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 
 </body>
 

@@ -9,6 +9,7 @@ use App\Models\Rental;
 use App\Models\Cabang;
 use App\Models\Kendaraan;
 use App\Models\Pembayaran;
+use App\Models\Pelanggan;
 use App\Models\CashIn;
 use App\Models\User;
 use App\Models\RentalItem;
@@ -331,6 +332,102 @@ class RentalController extends Controller
         return response()->json(['success' => true, 'message' => 'Status Berhasil Diperbarui']);
     }
 
+    public function getTransDataByDate(Request $request)
+    {
+        $request->validate([
+            'tanggal' => 'required|date',
+        ]);
+
+        $jumlah = Rental::whereDate('tanggal_invoice', $request->tanggal)->count();
+
+        return response()->json([
+            'success' => true,
+            'data' => $jumlah,
+        ]);
+    }
+
+    public function getPaymentDataByDate(Request $request)
+    {
+        $request->validate([
+            'tanggal' => 'required|date',
+        ]);
+
+        // Jumlahkan kolom `nominal` pada tanggal yang diminta
+        $totalNominal = Pembayaran::whereDate('tgl_bayar', $request->tanggal)->sum('nominal');
+
+        return response()->json([
+            'success' => true,
+            'data' => $totalNominal,
+        ]);
+    }
+
+
+    public function getTransDataByMonth(Request $request)
+    {
+        $request->validate([
+            'tanggal_awal' => 'required|date',
+            'tanggal_akhir' => 'required|date',
+        ]);
+
+        $jumlah = Rental::whereBetween('tanggal_invoice', [$request->tanggal_awal, $request->tanggal_akhir])->count();
+
+        return response()->json([
+            'success' => true,
+            'data' => $jumlah,
+        ]);
+    }
+
+    public function getPaymentDataByMonth(Request $request)
+    {
+        $request->validate([
+            'tanggal_awal' => 'required|date',
+            'tanggal_akhir' => 'required|date',
+        ]);
+
+        $totalNominal = Pembayaran::whereBetween('tgl_bayar', [$request->tanggal_awal, $request->tanggal_akhir])->sum('nominal');
+
+        return response()->json([
+            'success' => true,
+            'data' => $totalNominal,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'data' => $jumlah,
+        ]);
+    }
+
+    public function getTransDataByYear(Request $request)
+    {
+        $request->validate([
+            'tahun' => 'required|numeric'
+        ]);
+
+        $tahun = $request->tahun;
+
+        $jumlah = Rental::whereYear('tanggal_invoice', $tahun)->count();
+
+        return response()->json([
+            'success' => true,
+            'data' => $jumlah,
+        ]);
+    }
+
+    public function getPaymentDataByYear(Request $request)
+    {
+        $request->validate([
+            'tahun' => 'required|numeric'
+        ]);
+
+        $tahun = $request->tahun;
+
+         $totalNominal = Pembayaran::whereYear('tgl_bayar', $tahun)->sum('nominal');
+
+        return response()->json([
+            'success' => true,
+            'data' => $totalNominal,
+        ]);
+    }
 
     public function create()
     {
@@ -362,6 +459,8 @@ class RentalController extends Controller
                 'no_invoice' => 'required',
                 'tgl_invoice' => 'required',
                 'cabang_id' => 'required',
+                'pelanggan_id' => 'nullable',
+                'nik' => 'required',
                 'nama_pelanggan' => 'required',
                 'alamat' => 'required',
                 'email' => 'required',
@@ -390,11 +489,25 @@ class RentalController extends Controller
             $dateData = str_replace('/', '-', $request->tgl_invoice);
             $invoice_date = date("Y-m-d", strtotime($dateData));
 
+            $pelanggan = Pelanggan::where('nik', $request->nik)->first();
+
+            if (!$pelanggan) {
+                $pelanggan = Pelanggan::create([
+                    'nik' => $request->nik,
+                    'nama_pelanggan' => $request->nama_pelanggan,
+                    'email' => $request->email,
+                    'no_hp' => $request->nomor_hp,
+                    'alamat' => $request->alamat,
+                ]);
+            }
+
             // Simpan data ke tabel rental
             $rental = Rental::create([
                 'no_invoice' => $request->no_invoice,
                 'tanggal_invoice' => $invoice_date,
                 'cabang_id' => $request->cabang_id,
+                'pelanggan_id' => $pelanggan->id,
+                'nik' => $request->nik,
                 'nama_pelanggan' => $request->nama_pelanggan,
                 'alamat' => $request->alamat,
                 'sim' => $sim->hashName(),
@@ -442,10 +555,6 @@ class RentalController extends Controller
 
             if ($payment) {
                 foreach ($payment as $payments) {
-                    $cashIn = CashIn::where('payment_id', $payments->id)->first();
-                    if ($cashIn) {
-                        $cashIn->delete();
-                    }
                     $payments->delete();
                 }
             }

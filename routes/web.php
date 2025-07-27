@@ -89,6 +89,12 @@ Route::group(['middleware' => ['auth', 'role:super_admin,admin']], function () {
     Route::post('/api/delete-data-rental', [RentalController::class, 'deleteDataRental'])->name('deleteDataRental');
     Route::get('/api/get-data-payment', [RentalController::class, 'getDataPayment'])->name('getDataPayment');
     Route::post('/api/update-status-rental', [RentalController::class, 'updateStatusRental'])->name('updateStatusRental');
+    Route::get('/api/get-rental-data-by-date', [RentalController::class, 'getTransDataByDate'])->name('getTransDataByDate');
+    Route::get('/api/get-rental-data-by-month', [RentalController::class, 'getTransDataByMonth'])->name('getTransDataByMonth');
+    Route::get('/api/get-rental-data-by-year', [RentalController::class, 'getTransDataByYear'])->name('getTransDataByYear');
+    Route::get('/api/get-payment-data-by-date', [RentalController::class, 'getPaymentDataByDate'])->name('getPaymentDataByDate');
+    Route::get('/api/get-payment-data-by-month', [RentalController::class, 'getPaymentDataByMonth'])->name('getPaymentDataByMonth');
+    Route::get('/api/get-payment-data-by-year', [RentalController::class, 'getPaymentDataByYear'])->name('getPaymentDataByYear');
 });
 
 Route::group(['middleware' => ['auth', 'role:super_admin']], function () {

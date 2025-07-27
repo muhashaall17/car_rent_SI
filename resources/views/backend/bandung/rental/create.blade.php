@@ -58,38 +58,42 @@
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="fw-bold" for="alamat">Alamat</label>
-                                    <input type="text" name="alamat" class="form-control" placeholder="Isikan Alamat Anda">
+                                    <label class="fw-bold" for="alamat">NIK</label>
+                                    <input type="text" name="nik" class="form-control" placeholder="Masukan NIK Sesuai KTP yang Anda Dikirimkan">
                                 </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="fw-bold" for="alamat">Alamat</label>
+                                    <input type="text" name="alamat" class="form-control" placeholder="Masukan Alamat Sesuai KTP yang Anda Dikirimkan">
+                                </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="fw-bold" for="email">Email</label>
                                     <input type="email" name="email" class="form-control">
                                 </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="fw-bold" for="nomor_hp">Nomor Telp</label>
                                     <input type="text" name="nomor_hp" class="form-control">
                                 </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="fw-bold" for="sim">SIM</label>
                                     <input type="file" name="sim" class="form-control" readonly>
                                 </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="fw-bold" for="ktp">KTP</label>
                                     <input type="file" name="ktp" class="form-control" readonly>
                                 </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="fw-bold" for="kk">KK</label>
                                     <input type="file" name="kk" class="form-control" readonly>
                                 </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="fw-bold" for="ktm">KTM</label>
                                     <input type="file" name="ktm" class="form-control" readonly>

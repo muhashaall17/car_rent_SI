@@ -13,6 +13,8 @@ class Rental extends Model
         'no_invoice',    
         'tanggal_invoice', 
         'cabang_id', 
+        'pelanggan_id', 
+        'nik', 
         'nama_pelanggan',   
         'alamat',
         'sim',

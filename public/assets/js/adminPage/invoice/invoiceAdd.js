@@ -372,6 +372,9 @@ function submitRental() {
             cabang_id: {
                 required: true
             },
+            nik: {
+                required: true
+            },
             nama_pelanggan: {
                 required: true
             },
