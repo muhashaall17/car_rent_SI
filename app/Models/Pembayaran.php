@@ -13,7 +13,6 @@ class Pembayaran extends Model
         'rental_id',
         'tgl_bayar',
         'metode_pembayaran',
-        'nominal',
-        'bukti_pembayaran'
+        'nominal'
     ];
 }

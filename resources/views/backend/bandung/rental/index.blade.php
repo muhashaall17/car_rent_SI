@@ -132,12 +132,6 @@
                                 <input type="text" class="form-control rupiah" name="payment_nominal_ADD" id="payment_nominal_ADD">
                             </div>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-12">
-                                <label for="payment_proof_ADD">Bukti Bayar</label>
-                                <input type="text" class="form-control" name="payment_proof_ADD" id="payment_proof_ADD" value="bukti_bayar.png" readonly>
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="tes">Close</button>
@@ -184,12 +178,6 @@
                                 <input type="text" class="form-control rupiah" name="payment_nominal_EDIT" id="payment_nominal_EDIT">
                             </div>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-12">
-                                <label for="payment_proof_EDIT">Bukti Bayar</label>
-                                <input type="text" class="form-control" name="payment_proof_EDIT" id="payment_proof_EDIT" value="bukti_bayar.png" readonly>
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -211,12 +199,12 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12 my-2">
                                 <div class="card bg-light">
                                     <div class="card-header"><b>Invoice</b></div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-2">
                                                 <p>No Invoice</p>
                                                 <p>Tanggal</p>
                                                 <p>Cabang</p>
@@ -226,7 +214,7 @@
                                                 <p>:</p>
                                                 <p>:</p>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-9">
                                                 <p><span id="detailInvoiceNo"></span></p>
                                                 <p><span id="detailInvoiceDate"></span></p>
                                                 <p><span id="detailInvoiceBranch"></span></p>
@@ -235,12 +223,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-12 my-2">
                                 <div class="card bg-light">
                                     <div class="card-header"><b>Pelanggan</b></div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-3">
+                                            <div class="col-2">
                                                 <p>Nama</p>
                                                 <p>No Telp</p>
                                                 <p>Email</p>
@@ -252,7 +240,7 @@
                                                 <p>:</p>
                                                 <p>:</p>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-9">
                                                 <p><span id="detailCustomerName"></span></p>
                                                 <p><span id="detailCustomerPhone"></span></p>
                                                 <p><span id="detailCustomerEmail"></span></p>

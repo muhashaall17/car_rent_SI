@@ -36,15 +36,13 @@ class PembayaranController extends Controller
                 'date' => 'required',
                 'method' => 'required',
                 'nominal' => 'required|numeric',
-                'proof' => 'required',
             ]);
 
             $payment = Pembayaran::create([
                 'rental_id' => $request->rental_id,
                 'tgl_bayar' => $request->date,
                 'metode_pembayaran' => $request->method,
-                'nominal' => $request->nominal,
-                'bukti_pembayaran' => $request->proof,
+                'nominal' => $request->nominal
             ]);
 
             return response()->json([
@@ -65,8 +63,7 @@ class PembayaranController extends Controller
             $this->validate($request, [
                 'date' => 'required',
                 'method' => 'required',
-                'nominal' => 'required|numeric',
-                'proof' => 'required',
+                'nominal' => 'required|numeric'
             ]);
 
             $payment = Pembayaran::findOrFail($request->payment_id);
@@ -74,8 +71,7 @@ class PembayaranController extends Controller
             $payment->update([
                 'tgl_bayar' => $request->date,
                 'metode_pembayaran' => $request->method,
-                'nominal' => $request->nominal,
-                'bukti_pembayaran' => $request->proof
+                'nominal' => $request->nominal
             ]);
 
             return response()->json([

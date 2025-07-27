@@ -1,3 +1,11 @@
+function Rupiah(angka) {
+    var rupiah = '';
+    var angkarev = angka.toString().split('').reverse().join('');
+    for (var i = 0; i < angkarev.length; i++)
+        if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + '.';
+    return rupiah.split('', rupiah.length - 1).reverse().join('');
+}
+
 $('input[name="trans_date"]').datepicker({
     dateFormat: "dd/mm/yy",
     todayBtn: "linked",
@@ -5,7 +13,7 @@ $('input[name="trans_date"]').datepicker({
     todayHighlight: true,
     onSelect: function (dateText) {
         let c_trans_date = moment(dateText, "DD/MM/YYYY").format("YYYY-MM-DD");
-        console.log(c_trans_date);
+        transDataByDate(c_trans_date)
     },
 });
 
@@ -18,7 +26,7 @@ $('input[name="payment_date"]').datepicker({
         let c_payment_date = moment(dateText, "DD/MM/YYYY").format(
             "YYYY-MM-DD"
         );
-        console.log(c_payment_date);
+        paymentDataByDate(c_payment_date)
     },
 });
 
@@ -58,7 +66,7 @@ function paymentDataByDate(tanggal) {
         },
         success: function (response) {
             // Misalnya kita tampilkan datanya ke dalam #data-container
-            $("#payment_data_date").text(response.data); // pastikan backend kirim 'html'
+            $("#payment_data_date").text(Rupiah(response.data)); // pastikan backend kirim 'html'
         },
         error: function () {
             $("#payment_data_date").text("Tidak Dapat Mendapat Data");
@@ -94,7 +102,7 @@ const bulanList = [
 
 bulanList.forEach((namaBulan, index) => {
     const option = document.createElement("option");
-    option.value = index + 1; // value: 1 sampai 12
+    option.value = index; // value: 1 sampai 12
     option.text = namaBulan;
     if (index === bulanSekarang) {
         option.selected = true;
@@ -104,7 +112,7 @@ bulanList.forEach((namaBulan, index) => {
 
 bulanList.forEach((namaBulan, index) => {
     const option = document.createElement("option");
-    option.value = index + 1; // value: 1 sampai 12
+    option.value = index; // value: 1 sampai 12
     option.text = namaBulan;
     if (index === bulanSekarang) {
         option.selected = true;
@@ -166,7 +174,7 @@ function paymentDataByMonth(bulanIndex) {
         },
         success: function (response) {
             if (response.success) {
-                $("#payment_data_month").text(response.data);
+                $("#payment_data_month").text(Rupiah(response.data));
             } else {
                 $("#payment_data_month").text("ERROR!");
             }
@@ -248,7 +256,7 @@ function paymentDataByYear(tahun) {
         },
         success: function (response) {
             if (response.success) {
-                $("#payment_data_year").text(response.data);
+                $("#payment_data_year").text(Rupiah(response.data));
             } else {
                 $("#payment_data_year").text("ERROR!");
             }

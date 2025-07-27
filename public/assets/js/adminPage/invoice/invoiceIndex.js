@@ -203,6 +203,9 @@ $(document).ready(function () {
             {
                 data: "nominal",
                 class: "text-end",
+                render: function (data, type, row) {
+                    return Rupiah(data);
+                },
             },
             {
                 data: "id",
@@ -586,7 +589,6 @@ $(document).ready(function () {
                 : null,
             method: $('select[name="payment_method_ADD"]').val() || null,
             nominal: parseFloat(fixedNominal) || null,
-            proof: $('input[name="payment_proof_ADD"]').val() || null,
         };
 
         $.ajax({
@@ -613,9 +615,6 @@ $(document).ready(function () {
                             required: true,
                         },
                         payment_method_ADD: {
-                            required: true,
-                        },
-                        payment_proof_ADD: {
                             required: true,
                         },
                         payment_nominal_ADD: {
@@ -682,7 +681,6 @@ $(document).ready(function () {
                 : null,
             method: $('select[name="payment_method_EDIT"]').val() || null,
             nominal: parseFloat(fixedNominal) || null,
-            proof: $('input[name="payment_proof_EDIT"]').val() || null,
         };
 
         $.ajax({
@@ -709,9 +707,6 @@ $(document).ready(function () {
                             required: true,
                         },
                         payment_method_EDIT: {
-                            required: true,
-                        },
-                        payment_proof_EDIT: {
                             required: true,
                         },
                         payment_nominal_EDIT: {

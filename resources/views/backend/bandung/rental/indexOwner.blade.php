@@ -77,7 +77,6 @@
                                 <th class="text-center">Tanggal</th>
                                 <th>Jenis Pembayaran</th>
                                 <th class="text-end">Nominal</th>
-                                <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody></tbody>

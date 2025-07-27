@@ -159,17 +159,8 @@ $(document).ready(function () {
             {
                 data: "nominal",
                 class: "text-end",
-            },
-            {
-                data: "id",
-                class: "text-center",
                 render: function (data, type, row) {
-                    return `<a style="font-size: 16px" href="#" class="btn btn-sm btn-primary edit-payment-btn" data-key="${data}">
-                    <i class="fa fa-pencil"></i>
-                    </a>
-                    <a style="font-size: 16px" href="#" class="btn btn-sm btn-danger delete-payment-btn" data-key="${data}">
-                    <i class="fa fa-trash"></i>
-                    </a>`;
+                    return Rupiah(data);
                 },
             },
         ],
