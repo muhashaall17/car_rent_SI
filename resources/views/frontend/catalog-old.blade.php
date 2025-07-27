@@ -16,7 +16,7 @@
     
         <!-- TEXT START -->
         <div class="container-fluid text mb-4">
-            <h1 style="color:white;">Jocar Trans Cars</h1>
+            <h1 style="color:white;">Autorent Cars</h1>
         </div>
         <!-- TEXT END -->
 

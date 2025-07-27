@@ -22,7 +22,7 @@
                     <a href="#" class="logo">
                         <img src="assets/logo light.png" alt="logo" class="logo-white" />
                         <img src="assets/logo dark.png" alt="logo" class="logo-dark" />
-                        <span>Jocar Trans Indonesia</span>
+                        <span>Autorent</span>
                     </a>
                 </div>
                 <div class="nav__menu__btn" id="menu-btn">
@@ -996,7 +996,7 @@
                 <div class="footer__logo">
                     <a href="#" class="logo">
                         <img src="assets/logo light.png" alt="logo" />
-                        <span>Jocar Trans Indonesia</span>
+                        <span>Autorent</span>
                     </a>
                 </div>
                 <p>
@@ -1053,24 +1053,24 @@
                     </li>
                     <li>
                         <a href="#">
-                            <span><i class="ri-map-pin-fill"></i></span> Jocar Trans Bandung
+                            <span><i class="ri-map-pin-fill"></i></span> Autorent Bandung
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span><i class="ri-map-pin-fill"></i></span> Jocar Trans Jakarta
+                            <span><i class="ri-map-pin-fill"></i></span> Autorent Jakarta
                         </a>
                     </li>
                     <li>
-                        <a href="mailto:jocartransindonesia@gmail.com">
-                            <span><i class="ri-mail-fill"></i></span> jocartransindonesia@gmail.com
+                        <a href="mailto:autorentindonesia@gmail.com">
+                            <span><i class="ri-mail-fill"></i></span> autorentindonesia@gmail.com
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="footer__bar">
-            Copyright © 2024 Jocar Trans Indonesia. All rights reserved.
+            Copyright © 2024 Autorent. All rights reserved.
         </div>
     </footer>
     <script src="https://unpkg.com/scrollreveal"></script>
